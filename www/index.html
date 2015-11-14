@@ -82,24 +82,27 @@
     </div>
 
     <div data-role="footer" data-position="fixed">
-        <a href="#floor-plans"
-           style="background-color: cadetblue"
-           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
-        <a href="#list-of-tasks"
-           style="background-color: saddlebrown"
-           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
-        <a href="#hint"
+        <div data-role="navbar"><ul>
+            <li> <a href="#floor-plans"
+                    data-icon="location"
+
+           class="map-button ui-btn ui-shadow">Карты</a></li>
+            <li> <a href="#list-of-tasks"
+                    data-icon="bullets"
+           class="ui-btn ui-shadow">Задания</a></li>
+            <li><a href="#hint"
+                   data-icon="comment"
            data-rel="popup"
            data-transition="pop"
            data-position-to="window"
-           style="background-color: forestgreen"
            id="btn-hint"
-           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
-        <a href="#home"
-           style="background-color: lightblue"
+           class="ui-btn ui-shadow">Подсказка</a></li>
+            <li><a href="#home"
+                   data-icon="home"
            data-transition="slide"
            data-direction="reverse"
-           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-home"></a>
+           class="ui-btn ui-shadow">Домой</a></li>
+        </ul></div>
     </div>
 </div>
 
