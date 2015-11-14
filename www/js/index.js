@@ -347,3 +347,11 @@ $(document).ready(function() {
         }
     });
 });
+
+function currentTask() {
+    var currentTask_num = data[localStorage.getItem("currentTask")].order;
+    if (currentTask_num == 1) {
+        currentTask_num = '';
+    }
+    $.mobile.changePage("#task"+currentTask_num);
+}
