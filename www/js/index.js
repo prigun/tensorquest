@@ -53,13 +53,12 @@ app.initialize();
 
 var data = {
     "32976937-8ec6-442d-bec0-84594c6f1f7f": {
-            order: 1,
+        order: 1,
         name: "Пропуск",
         hint: "Подсказка для 1й задачи",
         complete: false,
         floor: 2,
-        time: "0,53",
-        uid: "32976937-8ec6-442d-bec0-84594c6f1f7f"
+        time: "0,53"
     },
     "3c1da4e9-6363-4de4-8975-430d3245f7cf": {
         order: 2,
@@ -135,29 +134,24 @@ var data = {
     }
 };
 
-loadLocalStorage();
-
-function loadLocalStorage() {
-    var _data = localStorage.getItem("data");
-    var _currentTask = localStorage.getItem("currentTask");
-    if (!_data || !_currentTask) {
-        updateLocalStorage();
-    } else {
-        data = _data;
-        currentTask = _currentTask;
-    }
+if (!localStorage.getItem("data")) {
+    localStorage.setItem("data", JSON.stringify(data));
 }
 
-function updateLocalStorage() {
-    localStorage.setItem("data", JSON.stringify(data));
-    localStorage.setItem("currentTask", currentTask);
+if (!localStorage.getItem("currentTask")) {
+    localStorage.setItem("currentTask", "32976937-8ec6-442d-bec0-84594c6f1f7f");
 }
 
 window.addEventListener("load", function() {
     $("#btn-hint").click(function(){
-        $("#hint").html("<p>" + data[currentTask].hint + "</p>");
+        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p>");
     });
-    $("btn-hint")
+    $("#btn-play").click(function(){
+        localStorage.setItem("taskStartTime", +new Date());
+        if (!localStorage.getItem("hinted")) {
+            $("#btn-hint").addClass("ui-state-disabled");
+        }
+    })
 });
 
 
@@ -184,6 +178,15 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         i++;
     });
     console.log(currentDataObject);
+});
+
+$(document).on('pageshow', '#task', function (e) {
+    setInterval(function(){
+        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
+            $("#btn-hint").removeClass("ui-state-disabled");
+            localStorage.setItem("hinted", true);
+        }
+    }, 200);
 });
 
 function scan() {
