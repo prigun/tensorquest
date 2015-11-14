@@ -151,15 +151,24 @@ window.addEventListener("load", function() {
             $("#btn-hint").addClass("ui-state-disabled");
         }
     });
-    $("#btn-newgame").hide();
+
     $("#btn-newgame").click(function(){
         localStorage.clear();
         localStorage.setItem("data", JSON.stringify(data));
         localStorage.setItem("taskStartTime", +new Date());
+        localStorage.setItem("currentTask", "32976937-8ec6-442d-bec0-84594c6f1f7f");
     })
 });
 
+$(document).on('pagebeforeshow', '#task', function(e){
+    var currentTask_num = data[localStorage.getItem("currentTask")].order;
+    if (currentTask_num>1) {
+        $.mobile.changePage("#task"+currentTask_num);
+    }
+});
+
 $(document).on('pagebeforeshow', '#home', function(e){
+    $("#btn-newgame").hide();
     if (localStorage.getItem("taskStartTime")) {
         $("#btn-play").html('Продолжить');
         $("#btn-newgame").show();
@@ -193,14 +202,21 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
     console.log(currentDataObject);
 });
 
-$(document).on('pageshow', '#task', function (e) {
-    setInterval(function(){
-        if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
-            $("#btn-hint").removeClass("ui-state-disabled");
-            localStorage.setItem("hinted", true);
-        }
-    }, 200);
-});
+function addTask(num) {
+    $(document).on('pageshow', '#task'+num, function (e) {
+        setInterval(function(){
+            if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
+                $("#btn-hint"+num).removeClass("ui-state-disabled");
+                localStorage.setItem("hinted", true);
+            }
+        }, 200);
+    });
+}
+
+addTask("");
+for (var i = 2; i<=2; i++) {
+    addTask(i);
+}
 
 function scan() {
     cordova.plugins.barcodeScanner.scan(
@@ -215,6 +231,9 @@ function scan() {
 
                     if (localStorage.getItem("currentTask") === result.text) {
                         data[localStorage.getItem("currentTask")].complete = true;
+                        data[localStorage.getItem("currentTask")].time =  +new Date() - localStorage.getItem("taskStartTime");
+                        localStorage.setItem("taskStartTime", +new Date());
+                        $.mobile.changePage("#task"+numberTask);
                         for (var key in data) {
                             if (data[key].order == numberTask)
                             {
