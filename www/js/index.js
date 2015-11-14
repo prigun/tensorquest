@@ -196,21 +196,23 @@ function scan() {
             {
                 if(result.format == "QR_CODE")
                 {
-                    alert(result.text);
-                    var numberTask = JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")]+1;
-                    if (JSON.parse(localStorage.getItem("currentTask")) === result.text) {
-                        Object.keys(data).forEach(function(index){
-                            if (i == numberTask)
+
+                    data = JSON.parse(localStorage.getItem("data"));
+                    var numberTask = data[localStorage.getItem("currentTask")].order+1;
+
+                    if (localStorage.getItem("currentTask") === result.text) {
+                        data[localStorage.getItem("currentTask")].complete = true;
+                        for (var key in data) {
+                            if (data[key].order == numberTask)
                             {
-                                localStorage.setItem("currentTask", index)
+                                localStorage.setItem("currentTask", key);
+
                             }
-                            i++;
-                        });
-                        game_data.progress++;
-                        updateProgress();
-                        alert('success');
+                        }
                     }
+                    localStorage.setItem("data", JSON.stringify(data));
                 }
+
             }
         },
         function (error) {
