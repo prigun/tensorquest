@@ -69,7 +69,13 @@
         <p>Переверни свой пропуск и сосканируй QR-код</p>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
-        <div id="hint"></div>
+        <div id="hint" data-role="popup">
+            <h1>Подсказка</h1>
+            <p>Это задание очень легкое, просто переверните Ваш пропуск, который Вы получили у охранника</p>
+            <a
+                data-rel="back"
+                class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-check ui-btn-right"></a>
+        </div>
     </div>
 
     <div data-role="footer" data-position="fixed">
@@ -79,7 +85,10 @@
         <a href="#list-of-tasks"
            style="background-color: saddlebrown"
            class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
-        <a href="#"
+        <a href="#hint"
+           data-rel="popup"
+           data-transition="pop"
+           data-position-to="window"
            style="background-color: forestgreen"
            id="btn-hint"
            class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
