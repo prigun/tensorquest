@@ -62,7 +62,7 @@ var data = {
     },
     "3c1da4e9-6363-4de4-8975-430d3245f7cf": {
         order: 2,
-        name: "Пропуск",
+        name: "Шарады",
         hint: "Подсказка для 2й задачи",
         complete: false,
         floor: 2,
@@ -70,7 +70,7 @@ var data = {
     },
     "3ea55d85-b43c-46bf-b1b6-d628a529d837": {
         order: 3,
-        name: "Пропуск",
+        name: "Найти место по звуку",
         hint: "Подсказка для 3й задачи",
         complete: false,
         floor: 2,
@@ -78,7 +78,7 @@ var data = {
     },
     "789b28a7-1d6f-4e53-a0e5-cc47a329bce5": {
         order: 4,
-        name: "Пропуск",
+        name: "Посмотрите видео",
         hint: "Подсказка для 4й задачи",
         complete: false,
         floor: 2,
@@ -86,7 +86,7 @@ var data = {
     },
     "791a0341-dc8f-46a1-871f-e0f8498601a0": {
         order: 5,
-        name: "Пропуск",
+        name: "Код в шахматах",
         hint: "Подсказка для 5й задачи",
         complete: false,
         floor: 2,
@@ -94,7 +94,7 @@ var data = {
     },
     "a5cd794e-2a25-4781-b4de-af79180f4d36": {
         order: 6,
-        name: "Пропуск",
+        name: "Комната с летающими людьми",
         hint: "Подсказка для 6й задачи",
         complete: false,
         floor: 2,
@@ -102,7 +102,7 @@ var data = {
     },
     "bb2eec62-0a88-4b13-a557-2a9c03c62c20": {
         order: 7,
-        name: "Пропуск",
+        name: "Найти печку",
         hint: "Подсказка для 7й задачи",
         complete: false,
         floor: 2,
@@ -110,7 +110,7 @@ var data = {
     },
     "c5ce0178-7a74-42da-b800-5fde70ee8b11": {
         order: 8,
-        name: "Пропуск",
+        name: "И снова прослушайте",
         hint: "Подсказка для 8й задачи",
         complete: false,
         floor: 2,
@@ -118,7 +118,7 @@ var data = {
     },
     "ca8e999d-e652-4d6a-9963-ac0f29123e74": {
         order: 9,
-        name: "Пропуск",
+        name: "Найти обезьянку",
         hint: "Подсказка для 9й задачи",
         complete: false,
         floor: 2,
@@ -186,8 +186,8 @@ $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
                 '</li>');
         }
         else {
-            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "forbidden") +'>' +
-                '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "") +'>' +
+                '<a href='+"#task-info-"+ (data[index].complete ? data[index].order : "") +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
                 '</li>');
             $("#list-of-tasks ul").listview("refresh");
         }
@@ -211,7 +211,12 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
     if (currentDataObject.complete)
     {
         $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
-        $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor)
+        $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor);
+    }
+    else
+    {
+        $("#" + currentHash + " .prop__time").css("display", "none");
+        $("#" + currentHash + " .prop__floor").css("display", "none");
     }
 });
 

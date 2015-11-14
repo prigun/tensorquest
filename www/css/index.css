@@ -191,6 +191,9 @@ div[data-role="header"] .small-logo {
 .task-info__description {
     padding-bottom: 10px;
 }
+#list-of-tasks {
+    text-transform: initial;
+}
 .task-info {
     text-transform: initial;
 }
