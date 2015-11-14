@@ -184,12 +184,12 @@ $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
         if (index == localStorage.getItem("currentTask"))
         {
             $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon="recycle">' +
-                '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+                '<a href='+"#task"+ (data[index].order - 1 == 0 ? "" : data[index].order - 1)+'>'+data[index].order+ '. ' + data[index].name +'</a>' +
                 '</li>');
         }
         else {
             $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "") +'>' +
-                '<a href='+"#task-info-"+ (data[index].complete ? data[index].order : "") +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+                '<a href='+"#task"+ (data[index].complete ? (data[index].order - 1 == 0 ? "" : data[index].order - 1) : "32") +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
                 '</li>');
             $("#list-of-tasks ul").listview("refresh");
         }
