@@ -213,9 +213,6 @@ $(document).on('pageshow', '#task', function (e) {
             localStorage.setItem("hinted", true);
         }
     }, 200);
-    $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
-    $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor)
-    console.log(currentDataObject.time);
 });
 
 function scan() {
@@ -279,15 +276,6 @@ $(document).ready(function (){
         fillOpacity: 0.4
     });
 });
-$(document).on('pageshow', '#task', function (e) {
-    setInterval(function(){
-        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
-            $("#btn-hint").removeClass("ui-state-disabled");
-        }
-    }, 200);
-});
-
-
 $(document).ready(function() {
     $("#task-info-2 .task-info__answer-button button").click(function(){
         if ($(this).parent().parent().find(".task-info__input input").val() == "Программист" ||
