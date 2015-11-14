@@ -158,18 +158,54 @@ div[data-role="header"] .small-logo {
 #info .info__programmer-list {
     margin: 0 -1em;
 }
+#info .info__programmer-list li h1 {
+    text-align: left;
+}
 #task .task__enter-button {
     background: lightblue;
     text-shadow: none;
 }
+#info .info__lead-title:first-child {
+    margin: -10px 0 5px 0;
+}
 .task-info__head {
 
+}
+.task-info__input {
+    margin: 0 0 10px 0;
+}
+.task-info__photo {
+    background-image: url("../img/knight.png");
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 110px;
+    background-size: contain;
+    overflow: visible;
+}
+.task-info__photo-img img {
+    width: 100%;
+}
+.task-info__photo-img {
+    width: 100%;
 }
 .task-info__description {
     padding-bottom: 10px;
 }
 .task-info {
     text-transform: initial;
+}
+.task-info__audio {
+    margin-bottom: 10px;
+}
+.task-info__video {
+    width: 100%;
+}
+.bold {
+    font-weight: bold;
+}
+.task-info__num-list {
+    padding: 0 0 0px 25px;
+    list-style-type: decimal;
 }
 .prop {
     display: inline-block;
