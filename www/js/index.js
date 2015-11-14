@@ -193,6 +193,38 @@ $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
         }
     });
 });
+$(document).on('pagebeforeshow', '.main-task', function(e){
+    var currentHash = location.hash;
+    currentHash = currentHash.substring(1);
+    var numberTask = currentHash[currentHash.length - 1];
+    if (isNaN(numberTask))
+    {
+        numberTask = 0;
+    }
+    numberTask++;
+    console.log(numberTask);
+    var currentDataObject;
+    var i = 1; //first index
+    var data = JSON.parse(localStorage.getItem("data"));
+    Object.keys(data).forEach(function(index){
+        if (i == numberTask)
+        {
+            currentDataObject = data[index];
+        }
+        i++;
+    });
+    if (currentDataObject.complete)
+    {
+        $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
+        $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor);
+    }
+    else
+    {
+        $("#" + currentHash + " .prop__time").css("display", "none");
+        $("#" + currentHash + " .prop__floor").css("display", "none");
+    }
+});
+
 $(document).on('pagebeforeshow', '.task-info', function(e){
     var currentHash = location.hash;
     currentHash = currentHash.substring(1);
