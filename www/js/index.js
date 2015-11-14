@@ -53,7 +53,9 @@ app.initialize();
 if (!localStorage.getItem("currentTask")) {
     localStorage.setItem("currentTask", "32976937-8ec6-442d-bec0-84594c6f1f7f");
 }
-
+$(document).on('pagebeforeshow', '#list_of_tasks', function(e){
+   console.log("222");
+});
 window.addEventListener("load", function() {
     console.log("load");
     $("#btn-hint").click(function(){

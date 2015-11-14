@@ -1,141 +1,555 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
-	<script src="js/jquery-2.1.4.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="css/index.css">
-	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 <body>
-	<div data-role="page" id="home">
-		<div data-role="header">
-            <img src="img/tensor_logo2.png" width="100%">
-        </div>
+<div data-role="page" id="home">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="100%">
+    </div>
 
-		<div data-role="content">
-            <h1 style="font-size: medium; text-align: center">Добро пожаловать в Тензор</h1>
-            <p style="text-align: center">Чтобы Вы чувствовали себя как дома, предлагаем Вам пройти интерактивный квест по нашему великолепному зданию</p>
-            <a href="#task" style="background-color: orange;" class="ui-btn ui-shadow ui-corner-all">Играть</a>
-        </div>
+    <div data-role="content">
+        <h1 class="home__main-title">Добро пожаловать в Тензор</h1>
+        <p class="home__main-description">Чтобы Вы чувствовали себя как дома, предлагаем Вам пройти интерактивный квест по нашему великолепному зданию</p>
+        <a href="#task"  class="ui-btn ui-shadow ui-corner-all home__play-button">Играть</a>
+    </div>
 
-		<div data-role="footer" data-position="fixed">
-            <a href="#"
-               style="background-color: red"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-power"></a>
-            <a href="#info"
-               style="background-color: lightblue"
-               data-transition="slide"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-info"></a>
-        </div>
-	</div>
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-power power-button"></a>
+        <a href="#info"
+           data-transition="slide"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-info hint-button"></a>
+    </div>
+</div>
 
-    <div data-role="page" id="info">
-        <div data-role="header">
-            <img src="img/tensor_logo2.png" width="100%" style="vertical-align: middle">
-        </div>
+<div data-role="page" id="info">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="100%">
+    </div>
 
-        <div data-role="content">
-            <h1>Руководители</h1>
-            <ul data-role="listview">
-                <li>Денис</li>
-            </ul>
-            <h1>Программисты</h1>
-            <ul data-role="listview">
-                <li><img src="img/person.png"><h1>Андрей</h1><p>ЯрГУ факультет ИВТ</p></li>
-                <li><img src="img/person.png"><h1>Артем</h1><p>ЯрГУ факультет ИВТ</p></li>
-                <li><img src="img/person.png"><h1>Максим</h1><p>ЯрГУ физический факультет</p></li>
-                <li><img src="img/person.png"><h1>Никита</h1><p>ЯрГУ математический факультет</p></li>
-            </ul>
-        </div>
+    <div data-role="content">
+        <h1 class="info__lead-title">Руководители</h1>
+        <ul data-role="listview" class="info__lead-name">
+            <li>Денис</li>
+        </ul>
+        <h1 class="info__lead-title">Программисты</h1>
+        <ul data-role="listview" class="info__programmer-list">
+            <li><img src="img/person.png"><h1>Андрей</h1><p>ЯрГУ факультет ИВТ</p></li>
+            <li><img src="img/person.png"><h1>Артем</h1><p>ЯрГУ факультет ИВТ</p></li>
+            <li><img src="img/person.png"><h1>Максим</h1><p>ЯрГУ физический факультет</p></li>
+            <li><img src="img/person.png"><h1>Никита</h1><p>ЯрГУ математический факультет</p></li>
+        </ul>
+    </div>
 
-        <div data-role="footer" data-position="fixed">
-            <a style="background-color: lightblue"
-               data-transition="slide"
-               data-rel="back"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    <div data-role="footer" data-position="fixed">
+        <a
+                data-transition="slide"
+                data-rel="back"
+                class="hint-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+
+<div data-role="page" id="task">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1>Пожалуй начнём</h1>
+        <p>Переверни свой пропуск и сосканируй QR-код</p>
+        <a href="#"
+           class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+
+<div data-role="page" id="list_of_tasks">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li data-icon="check">
+                <a href="#task-info-1">1. Пропуск <p class="ui-li-aside">0:21</p></a>
+            </li>
+            <li data-icon="recycle">
+                <a href="#task-info-2"> 2. Обезьянка</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-3"> 3. Настольный теннис</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-4"> 4. Салфетка</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-5"> 5. Шарады</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-6"> 6. Карта сокровищ</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-7"> 7. Видеомаршрут</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-8"> 8. Звонок другу</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-9"> 9. Найти колонну</a>
+            </li>
+            <li data-icon="forbidden">
+                <a href="#task-info-10"> 10. Зайти в кабинет</a>
+            </li>
+        </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-1">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
         </div>
     </div>
 
-    <div data-role="page" id="task">
-        <div data-role="header">
-            <img src="img/tensor_logo2.png" width="30%">
-        </div>
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-2">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
 
-        <div data-role="content">
-            <h1>Пожалуй начнём</h1>
-            <p>Переверни свой пропуск и сосканируй QR-код</p>
-            <a href="#"
-               style="background-color: deepskyblue"
-               class="ui-btn ui-shadow ui-corner-all">Ввести код</a>
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
         </div>
-
-        <div data-role="footer" data-position="fixed">
-            <a href="#"
-               style="background-color: cadetblue"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
-            <a href="#list-of-tasks"
-               style="background-color: saddlebrown"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
-            <a href="#"
-               style="background-color: forestgreen"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
-            <a style="background-color: lightblue"
-               data-transition="slide"
-               data-rel="back"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
         </div>
     </div>
 
-    <div data-role="page" id="list-of-tasks">
-        <div data-role="header">
-            <img src="img/tensor_logo2.png" width="30%">
-        </div>
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-3">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
 
-        <div data-role="content">
-            <ul data-role="listview" data-inset="true">
-                <li data-icon="check">
-                    <a href="#">1. Пропуск <p class="ui-li-aside">0:21</p></a>
-                </li>
-                <li data-icon="recycle">
-                    <a href="#"> 2. Обезьянка</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 3. Настольный теннис</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 4. Салфетка</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 5. Шарады</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 6. Карта сокровищ</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 7. Видеомаршрут</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 8. Звонок другу</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 9. Найти колонну</a>
-                </li>
-                <li data-icon="forbidden">
-                    <a href="#"> 10. Зайти в кабинет</a>
-                </li>
-            </ul>
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
         </div>
-
-        <div data-role="footer" data-position="fixed">
-            <a style="background-color: lightblue"
-               data-transition="slide"
-               data-rel="back"
-               class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
         </div>
     </div>
-</body>
 
-</html>
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-4">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-5">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-6">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-7">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-8">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-9">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+<div data-role="page" class="task-info" id="task-info-10">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <h1 class="task-info__head">Найти обезьянку</h1>
+        <div class="task-info__description">
+            бла бла бла бла бла бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+            бла бла бла бла бла
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#"
+           style="background-color: cadetblue"
+           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
+        <a href="#list_of_tasks"
+           style="background-color: saddlebrown"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a href="#"
+           style="background-color: forestgreen"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
