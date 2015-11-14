@@ -158,9 +158,15 @@ div[data-role="header"] .small-logo {
 #info .info__programmer-list {
     margin: 0 -1em;
 }
+#info .info__programmer-list li h1 {
+    text-align: left;
+}
 #task .task__enter-button {
     background: lightblue;
     text-shadow: none;
+}
+#info .info__lead-title:first-child {
+    margin: -10px 0 5px 0;
 }
 .task-info__head {
 

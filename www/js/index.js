@@ -161,6 +161,7 @@ $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
 });
 $(document).on('pagebeforeshow', '.task-info', function(e){
     var currentHash = location.hash;
+    currentHash = currentHash.substring(1);
     var numberTask = currentHash[currentHash.length - 1];
     console.log(numberTask);
     var currentDataObject;
@@ -172,5 +173,15 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         }
         i++;
     });
-    console.log(currentDataObject);
+    $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
+    $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor)
+    console.log(currentDataObject.time);
+});
+
+$(document).on('pageshow', '#task', function (e) {
+    setInterval(function(){
+        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
+            $("#btn-hint").removeClass("ui-state-disabled");
+        }
+    }, 200);
 });
