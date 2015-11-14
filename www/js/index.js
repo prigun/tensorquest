@@ -55,9 +55,7 @@ if (!localStorage.getItem("currentTask")) {
 }
 
 window.addEventListener("load", function() {
-    console.log("load");
     $("#btn-hint").click(function(){
-        console.log("click comment");
         $("#hint").html("<p>" + data[localStorage.getItem("currentTask")].hint + "</p");
     })
 });
