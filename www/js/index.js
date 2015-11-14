@@ -55,7 +55,7 @@ var data = {
     "32976937-8ec6-442d-bec0-84594c6f1f7f": {
         order: 1,
         name: "Пропуск",
-        hint: "Подсказка для 1й задачи",
+        hint: "",
         complete: false,
         floor: 2,
         time: "0,53"
@@ -160,11 +160,13 @@ window.addEventListener("load", function() {
     })
 });
 
-$(document).on('pagebeforeshow', '#task', function(e){
+$("#btn-play").click(function() {
     var currentTask_num = data[localStorage.getItem("currentTask")].order;
     if (currentTask_num>1) {
         $.mobile.changePage("#task"+currentTask_num);
+        return false;
     }
+    return true;
 });
 
 $(document).on('pagebeforeshow', '#home', function(e){
@@ -221,7 +223,7 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
 });
 
 function addTask(num) {
-    $(document).on('pageshow', '#task'+num, function (e) {
+    $(document).on('pagebeforeshow', '#task'+num, function (e) {
         setInterval(function(){
             if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
                 $("#btn-hint"+num).removeClass("ui-state-disabled");
@@ -259,6 +261,11 @@ function scan() {
 
                             }
                         }
+                        alert('Поздравляем! Можете переходить к следующему заданию');
+                    }
+                    else
+                    {
+                        alert('Неверный QR-код');
                     }
                     localStorage.setItem("data", JSON.stringify(data));
                 }
