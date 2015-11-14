@@ -144,11 +144,13 @@ if (!localStorage.getItem("currentTask")) {
 
 window.addEventListener("load", function() {
     $("#btn-hint").click(function(){
-        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p");
+        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p>");
     });
     $("#btn-play").click(function(){
         localStorage.setItem("taskStartTime", +new Date());
-        $("#btn-hint").addClass("ui-state-disabled");
+        if (!localStorage.getItem("hinted")) {
+            $("#btn-hint").addClass("ui-state-disabled");
+        }
     })
 });
 
@@ -182,6 +184,7 @@ $(document).on('pageshow', '#task', function (e) {
     setInterval(function(){
         if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
             $("#btn-hint").removeClass("ui-state-disabled");
+            localStorage.setItem("hinted", true);
         }
     }, 200);
 });
