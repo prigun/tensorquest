@@ -55,7 +55,7 @@ var data = {
     "32976937-8ec6-442d-bec0-84594c6f1f7f": {
         order: 1,
         name: "Пропуск",
-        hint: "Подсказка для 1й задачи",
+        hint: "",
         complete: false,
         floor: 2,
         time: "0,53"
