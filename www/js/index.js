@@ -179,7 +179,7 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
 
 $(document).on('pageshow', '#task', function (e) {
     setInterval(function(){
-        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
+        if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
             $("#btn-hint").removeClass("ui-state-disabled");
             localStorage.setItem("hinted", true);
         }
