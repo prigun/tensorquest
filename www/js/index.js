@@ -144,13 +144,27 @@ if (!localStorage.getItem("currentTask")) {
 
 window.addEventListener("load", function() {
     $("#btn-play").click(function(){
-        localStorage.setItem("taskStartTime", +new Date());
+        if (!localStorage.getItem("taskStartTime")) {
+            localStorage.setItem("taskStartTime", +new Date());
+        }
         if (!localStorage.getItem("hinted")) {
             $("#btn-hint").addClass("ui-state-disabled");
         }
+    });
+    $("#btn-newgame").hide();
+    $("#btn-newgame").click(function(){
+        localStorage.clear();
+        localStorage.setItem("data", JSON.stringify(data));
+        localStorage.setItem("taskStartTime", +new Date());
     })
 });
 
+$(document).on('pagebeforeshow', '#home', function(e){
+    if (localStorage.getItem("taskStartTime")) {
+        $("#btn-play").html('Продолжить');
+        $("#btn-newgame").show();
+    }
+});
 
 $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
     $("#list-of-tasks ul").html("");
