@@ -178,20 +178,20 @@ $(document).on('pagebeforeshow', '#home', function(e){
 });
 
 $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
-    $("#list-of-tasks ul").html("");
+    $("#list-of-tasks-ul").html("");
     var data = JSON.parse(localStorage.getItem("data"));
     Object.keys(data).forEach(function(index){
         if (index == localStorage.getItem("currentTask"))
         {
-            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon="recycle">' +
+            $("#list-of-tasks-ul").html($("#list-of-tasks ul").html() + '<li data-icon="recycle">' +
                 '<a href='+"#task"+ (data[index].order - 1 == 0 ? "" : data[index].order - 1)+'>'+data[index].order+ '. ' + data[index].name +'</a>' +
                 '</li>');
         }
         else {
-            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "") +'>' +
+            $("#list-of-tasks-ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "") +'>' +
                 '<a href='+"#task"+ (data[index].complete ? (data[index].order - 1 == 0 ? "" : data[index].order - 1) : "32") +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
                 '</li>');
-            $("#list-of-tasks ul").listview("refresh");
+            $("#list-of-tasks-ul").listview("refresh");
         }
     });
 });
