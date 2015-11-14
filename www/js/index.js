@@ -160,11 +160,13 @@ window.addEventListener("load", function() {
     })
 });
 
-$(document).on('pagebeforeshow', '#task', function(e){
+$("#btn-play").click(function() {
     var currentTask_num = data[localStorage.getItem("currentTask")].order;
     if (currentTask_num>1) {
         $.mobile.changePage("#task"+currentTask_num);
+        return false;
     }
+    return true;
 });
 
 $(document).on('pagebeforeshow', '#home', function(e){
@@ -221,7 +223,7 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
 });
 
 function addTask(num) {
-    $(document).on('pageshow', '#task'+num, function (e) {
+    $(document).on('pagebeforeshow', '#task'+num, function (e) {
         setInterval(function(){
             if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
                 $("#btn-hint"+num).removeClass("ui-state-disabled");
