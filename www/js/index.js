@@ -53,12 +53,13 @@ app.initialize();
 
 var data = {
     "32976937-8ec6-442d-bec0-84594c6f1f7f": {
-        order: 1,
+            order: 1,
         name: "Пропуск",
         hint: "Подсказка для 1й задачи",
         complete: false,
         floor: 2,
-        time: "0,53"
+        time: "0,53",
+        uid: "32976937-8ec6-442d-bec0-84594c6f1f7f"
     },
     "3c1da4e9-6363-4de4-8975-430d3245f7cf": {
         order: 2,
@@ -134,17 +135,27 @@ var data = {
     }
 };
 
-if (!localStorage.getItem("data")) {
-    localStorage.setItem("data", JSON.stringify(data));
+loadLocalStorage();
+
+function loadLocalStorage() {
+    var _data = localStorage.getItem("data");
+    var _currentTask = localStorage.getItem("currentTask");
+    if (!_data || !_currentTask) {
+        updateLocalStorage();
+    } else {
+        data = _data;
+        currentTask = _currentTask;
+    }
 }
 
-if (!localStorage.getItem("currentTask")) {
-    localStorage.setItem("currentTask", "32976937-8ec6-442d-bec0-84594c6f1f7f");
+function updateLocalStorage() {
+    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("currentTask", currentTask);
 }
 
 window.addEventListener("load", function() {
     $("#btn-hint").click(function(){
-        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p");
+        $("#hint").html("<p>" + data[currentTask].hint + "</p>");
     });
     $("btn-hint")
 });
@@ -174,3 +185,34 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
     });
     console.log(currentDataObject);
 });
+
+function scan() {
+    cordova.plugins.barcodeScanner.scan(
+        function (result) {
+            if(!result.cancelled)
+            {
+                if(result.format == "QR_CODE")
+                {
+                    alert(result.text);
+                    var numberTask = JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")]+1;
+                    if (JSON.parse(localStorage.getItem("currentTask")) === result.text) {
+                        Object.keys(data).forEach(function(index){
+                            if (i == numberTask)
+                            {
+                                localStorage.setItem("currentTask", index)
+                            }
+                            i++;
+                        });
+                        game_data.progress++;
+                        updateProgress();
+                        alert('success');
+                    }
+                }
+            }
+        },
+        function (error) {
+            alert("Scanning failed: " + error);
+        }
+    );
+}
+
