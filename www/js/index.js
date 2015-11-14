@@ -214,7 +214,7 @@ function addTask(num) {
 }
 
 addTask("");
-for (var i = 2; i<=2; i++) {
+for (var i = 2; i<=10; i++) {
     addTask(i);
 }
 
