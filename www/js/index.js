@@ -143,9 +143,6 @@ if (!localStorage.getItem("currentTask")) {
 }
 
 window.addEventListener("load", function() {
-    $("#btn-hint").click(function(){
-        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p>");
-    });
     $("#btn-play").click(function(){
         localStorage.setItem("taskStartTime", +new Date());
         if (!localStorage.getItem("hinted")) {
@@ -182,9 +179,42 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
 
 $(document).on('pageshow', '#task', function (e) {
     setInterval(function(){
-        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
+        if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
             $("#btn-hint").removeClass("ui-state-disabled");
             localStorage.setItem("hinted", true);
         }
     }, 200);
 });
+
+function scan() {
+    cordova.plugins.barcodeScanner.scan(
+        function (result) {
+            if(!result.cancelled)
+            {
+                if(result.format == "QR_CODE")
+                {
+
+                    data = JSON.parse(localStorage.getItem("data"));
+                    var numberTask = data[localStorage.getItem("currentTask")].order+1;
+
+                    if (localStorage.getItem("currentTask") === result.text) {
+                        data[localStorage.getItem("currentTask")].complete = true;
+                        for (var key in data) {
+                            if (data[key].order == numberTask)
+                            {
+                                localStorage.setItem("currentTask", key);
+
+                            }
+                        }
+                    }
+                    localStorage.setItem("data", JSON.stringify(data));
+                }
+
+            }
+        },
+        function (error) {
+            alert("Scanning failed: " + error);
+        }
+    );
+}
+
