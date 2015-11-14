@@ -53,9 +53,7 @@ app.initialize();
 if (!localStorage.getItem("currentTask")) {
     localStorage.setItem("currentTask", "32976937-8ec6-442d-bec0-84594c6f1f7f");
 }
-$(document).on('pagebeforeshow', '#list_of_tasks', function(e){
-   console.log("222");
-});
+
 window.addEventListener("load", function() {
     $("#btn-hint").click(function(){
         $("#hint").html("<p>" + data[localStorage.getItem("currentTask")].hint + "</p");
@@ -114,3 +112,8 @@ var data = {
         hint: "Подсказка для 10й задачи",
     },
 };
+$(document).on('pagebeforeshow', '#list_of_tasks', function(e){
+    data.each(function(index){
+
+    })
+});
