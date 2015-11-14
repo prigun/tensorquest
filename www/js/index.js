@@ -113,7 +113,10 @@ var data = {
     },
 };
 $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
-    data.each(function(index){
-
+    Object.keys(data).forEach(function(index){
+        $("#list-of-tasks ul").html($("#list-of-tasks ul").html + '<li data-icon="check">' +
+            '<a href="#task-info-1">1. Пропуск <p class="ui-li-aside">0:21</p></a>' +
+        '</li>');
+        console.log(data[index].order);
     });
 });
