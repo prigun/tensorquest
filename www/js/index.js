@@ -62,7 +62,7 @@ var data = {
     },
     "3c1da4e9-6363-4de4-8975-430d3245f7cf": {
         order: 2,
-        name: "Пропуск",
+        name: "Шарады",
         hint: "Подсказка для 2й задачи",
         complete: false,
         floor: 2,
@@ -70,7 +70,7 @@ var data = {
     },
     "3ea55d85-b43c-46bf-b1b6-d628a529d837": {
         order: 3,
-        name: "Пропуск",
+        name: "Найти место по звуку",
         hint: "Подсказка для 3й задачи",
         complete: false,
         floor: 2,
@@ -78,7 +78,7 @@ var data = {
     },
     "789b28a7-1d6f-4e53-a0e5-cc47a329bce5": {
         order: 4,
-        name: "Пропуск",
+        name: "Посмотрите видео",
         hint: "Подсказка для 4й задачи",
         complete: false,
         floor: 2,
@@ -86,7 +86,7 @@ var data = {
     },
     "791a0341-dc8f-46a1-871f-e0f8498601a0": {
         order: 5,
-        name: "Пропуск",
+        name: "Код в шахматах",
         hint: "Подсказка для 5й задачи",
         complete: false,
         floor: 2,
@@ -94,7 +94,7 @@ var data = {
     },
     "a5cd794e-2a25-4781-b4de-af79180f4d36": {
         order: 6,
-        name: "Пропуск",
+        name: "Комната с летающими людьми",
         hint: "Подсказка для 6й задачи",
         complete: false,
         floor: 2,
@@ -102,7 +102,7 @@ var data = {
     },
     "bb2eec62-0a88-4b13-a557-2a9c03c62c20": {
         order: 7,
-        name: "Пропуск",
+        name: "Найти печку",
         hint: "Подсказка для 7й задачи",
         complete: false,
         floor: 2,
@@ -110,7 +110,7 @@ var data = {
     },
     "c5ce0178-7a74-42da-b800-5fde70ee8b11": {
         order: 8,
-        name: "Пропуск",
+        name: "И снова прослушайте",
         hint: "Подсказка для 8й задачи",
         complete: false,
         floor: 2,
@@ -118,7 +118,7 @@ var data = {
     },
     "ca8e999d-e652-4d6a-9963-ac0f29123e74": {
         order: 9,
-        name: "Пропуск",
+        name: "Найти обезьянку",
         hint: "Подсказка для 9й задачи",
         complete: false,
         floor: 2,
@@ -144,29 +144,63 @@ if (!localStorage.getItem("currentTask")) {
 
 window.addEventListener("load", function() {
     $("#btn-play").click(function(){
-        localStorage.setItem("taskStartTime", +new Date());
+        if (!localStorage.getItem("taskStartTime")) {
+            localStorage.setItem("taskStartTime", +new Date());
+        }
         if (!localStorage.getItem("hinted")) {
             $("#btn-hint").addClass("ui-state-disabled");
         }
+    });
+
+    $("#btn-newgame").click(function(){
+        localStorage.clear();
+        localStorage.setItem("data", JSON.stringify(data));
+        localStorage.setItem("taskStartTime", +new Date());
+        localStorage.setItem("currentTask", "32976937-8ec6-442d-bec0-84594c6f1f7f");
     })
 });
 
+$(document).on('pagebeforeshow', '#task', function(e){
+    var currentTask_num = data[localStorage.getItem("currentTask")].order;
+    if (currentTask_num>1) {
+        $.mobile.changePage("#task"+currentTask_num);
+    }
+});
+
+$(document).on('pagebeforeshow', '#home', function(e){
+    $("#btn-newgame").hide();
+    if (localStorage.getItem("taskStartTime")) {
+        $("#btn-play").html('Продолжить');
+        $("#btn-newgame").show();
+    }
+});
 
 $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
     $("#list-of-tasks ul").html("");
+    var data = JSON.parse(localStorage.getItem("data"));
     Object.keys(data).forEach(function(index){
-        $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "forbidden") +'>' +
-            '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
-        '</li>');
-        $("#list-of-tasks ul").listview("refresh");
+        if (index == localStorage.getItem("currentTask"))
+        {
+            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon="recycle">' +
+                '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+                '</li>');
+        }
+        else {
+            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "") +'>' +
+                '<a href='+"#task-info-"+ (data[index].complete ? data[index].order : "") +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+                '</li>');
+            $("#list-of-tasks ul").listview("refresh");
+        }
     });
 });
 $(document).on('pagebeforeshow', '.task-info', function(e){
     var currentHash = location.hash;
+    currentHash = currentHash.substring(1);
     var numberTask = currentHash[currentHash.length - 1];
     console.log(numberTask);
     var currentDataObject;
     var i = 1; //first index
+    var data = JSON.parse(localStorage.getItem("data"));
     Object.keys(data).forEach(function(index){
         if (i == numberTask)
         {
@@ -174,17 +208,33 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         }
         i++;
     });
-    console.log(currentDataObject);
+    if (currentDataObject.complete)
+    {
+        $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
+        $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor);
+    }
+    else
+    {
+        $("#" + currentHash + " .prop__time").css("display", "none");
+        $("#" + currentHash + " .prop__floor").css("display", "none");
+    }
 });
 
-$(document).on('pageshow', '#task', function (e) {
-    setInterval(function(){
-        if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
-            $("#btn-hint").removeClass("ui-state-disabled");
-            localStorage.setItem("hinted", true);
-        }
-    }, 200);
-});
+function addTask(num) {
+    $(document).on('pageshow', '#task'+num, function (e) {
+        setInterval(function(){
+            if (localStorage.getItem("taskStartTime") && +new Date() - localStorage.getItem("taskStartTime") > 5000) {
+                $("#btn-hint"+num).removeClass("ui-state-disabled");
+                localStorage.setItem("hinted", true);
+            }
+        }, 200);
+    });
+}
+
+addTask("");
+for (var i = 2; i<=10; i++) {
+    addTask(i);
+}
 
 function scan() {
     cordova.plugins.barcodeScanner.scan(
@@ -194,11 +244,14 @@ function scan() {
                 if(result.format == "QR_CODE")
                 {
 
-                    data = JSON.parse(localStorage.getItem("data"));
+                    var data = JSON.parse(localStorage.getItem("data"));
                     var numberTask = data[localStorage.getItem("currentTask")].order+1;
 
                     if (localStorage.getItem("currentTask") === result.text) {
                         data[localStorage.getItem("currentTask")].complete = true;
+                        data[localStorage.getItem("currentTask")].time =  +new Date() - localStorage.getItem("taskStartTime");
+                        localStorage.setItem("taskStartTime", +new Date());
+                        $.mobile.changePage("#task"+numberTask);
                         for (var key in data) {
                             if (data[key].order == numberTask)
                             {
@@ -218,3 +271,40 @@ function scan() {
     );
 }
 
+$(document).on('pagebeforeshow', '#current-floor-plan', function(e) {
+    var currentFloorNumber = window.localStorage.getItem("curentSelectedFloorPlanPage");
+    var finalSvgObjectElement = "<img id='current-floor-svg' src='img/" + currentFloorNumber + ".svg'></img>";
+    $("#current-floor-number").text(currentFloorNumber + "-этаж:");
+    $("#panzoom").empty().append(finalSvgObjectElement);
+});
+
+$(document).ready(function (){
+    $('#panzoom').panzoom({
+        $zoomIn: $(".zoom-in"),
+        $zoomOut: $(".zoom-out"),
+        $reset: $(".reset")
+    });
+    var areas = $("#navigation-map").children();
+    for (var i = 0; i < areas.length; i++) {
+        var currentArea = areas[i];
+        $(currentArea).bind("click", function () {
+            window.localStorage.setItem("curentSelectedFloorPlanPage", $(this).attr('page-number'));
+            var nextPage = "#current-floor-plan";
+            $.mobile.changePage(nextPage, {
+                transition: 'slide'
+            });
+        });
+    }
+    $('.map').maphilight({
+        fillColor: '09FF11',
+        fillOpacity: 0.4
+    });
+});
+$(document).ready(function() {
+    $("#task-info-2 .task-info__answer-button button").click(function(){
+        if ($(this).parent().parent().find(".task-info__input input").val() == "Программист" ||
+            $(this).parent().parent().find(".task-info__input input").val() == "программист") {
+            $(this).parent().parent().find(".task-info__description").text("Найдите ваш QR - код на 2м этаже рядом с железным человеком.");
+        }
+    });
+});
