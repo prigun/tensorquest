@@ -144,9 +144,14 @@ if (!localStorage.getItem("currentTask")) {
 
 window.addEventListener("load", function() {
     $("#btn-hint").click(function(){
-        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p");
+        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p>");
     });
-    $("btn-hint")
+    $("#btn-play").click(function(){
+        localStorage.setItem("taskStartTime", +new Date());
+        if (!localStorage.getItem("hinted")) {
+            $("#btn-hint").addClass("ui-state-disabled");
+        }
+    })
 });
 
 
@@ -173,6 +178,16 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         }
         i++;
     });
+    console.log(currentDataObject);
+});
+
+$(document).on('pageshow', '#task', function (e) {
+    setInterval(function(){
+        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
+            $("#btn-hint").removeClass("ui-state-disabled");
+            localStorage.setItem("hinted", true);
+        }
+    }, 200);
     $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
     $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor)
     console.log(currentDataObject.time);
