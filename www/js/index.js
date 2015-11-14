@@ -143,9 +143,6 @@ if (!localStorage.getItem("currentTask")) {
 }
 
 window.addEventListener("load", function() {
-    $("#btn-hint").click(function(){
-        $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p>");
-    });
     $("#btn-play").click(function(){
         localStorage.setItem("taskStartTime", +new Date());
         if (!localStorage.getItem("hinted")) {
