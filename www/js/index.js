@@ -254,6 +254,11 @@ function scan() {
 
                             }
                         }
+                        alert('Поздравляем! Можете переходить к следующему заданию');
+                    }
+                    else
+                    {
+                        alert('Неверный QR-код');
                     }
                     localStorage.setItem("data", JSON.stringify(data));
                 }
