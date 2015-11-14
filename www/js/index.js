@@ -112,8 +112,8 @@ var data = {
         hint: "Подсказка для 10й задачи",
     },
 };
-$(document).on('pagebeforeshow', '#list_of_tasks', function(e){
+$(document).on('pagebeforeshow', '#list-of-tasks', function(e){
     data.each(function(index){
 
-    })
+    });
 });
