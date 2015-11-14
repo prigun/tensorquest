@@ -146,7 +146,10 @@ window.addEventListener("load", function() {
     $("#btn-hint").click(function(){
         $("#hint").html("<p>" + JSON.parse(localStorage.getItem("data"))[localStorage.getItem("currentTask")].hint + "</p");
     });
-    $("btn-hint")
+    $("#btn-play").click(function(){
+        localStorage.setItem("taskStartTime", +new Date());
+        $("#btn-hint").addClass("ui-state-disabled");
+    })
 });
 
 
@@ -173,4 +176,12 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         i++;
     });
     console.log(currentDataObject);
+});
+
+$(document).on('pageshow', '#task', function (e) {
+    setInterval(function(){
+        if (+new Date() - localStorage.getItem("taskStartTime") > 5000) {
+            $("#btn-hint").removeClass("ui-state-disabled");
+        }
+    }, 200);
 });
