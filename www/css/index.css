@@ -113,3 +113,72 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+#home {
+    text-transform: initial;
+}
+.home__main-title {
+    font-size: 18px;
+    margin: 15px 0;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+
+}
+.home__main-description {
+    text-align: center;
+    font-size: 16px;
+}
+#home .home__play-button {
+    background: #FFA500;
+    text-shadow: none;
+}
+div[data-role='footer'] .power-button {
+    background: #ff0000;
+}
+div[data-role='footer'] .hint-button {
+    background: lightblue;
+}
+div[data-role='footer'] .map-button {
+   background-color: cornflowerblue;
+}
+div[data-role="header"] .small-logo {
+    display: block;
+    margin: 3px 0 0 0;
+}
+#info .info__lead-title {
+    margin: 0;
+    width: 100%;
+}
+#info .info__lead-name {
+    margin: 0 -11px 0 -12px;
+}
+#info {
+    text-transform: capitalize;
+}
+#info .info__programmer-list {
+    margin: 0 -1em;
+}
+#task .task__enter-button {
+    background: lightblue;
+    text-shadow: none;
+}
+.task-info__head {
+
+}
+.task-info__description {
+    padding-bottom: 10px;
+}
+.task-info {
+    text-transform: initial;
+}
+.prop {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 14px;
+}
+.prop__time {
+    float: left;
+}
+.prop__floor {
+    float: right;
+}
