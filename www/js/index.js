@@ -179,14 +179,23 @@ $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
     $("#list-of-tasks ul").html("");
     var data = JSON.parse(localStorage.getItem("data"));
     Object.keys(data).forEach(function(index){
-        $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "forbidden") +'>' +
-            '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
-        '</li>');
-        $("#list-of-tasks ul").listview("refresh");
+        if (index == localStorage.getItem("currentTask"))
+        {
+            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon="recycle">' +
+                '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+                '</li>');
+        }
+        else {
+            $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "forbidden") +'>' +
+                '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
+                '</li>');
+            $("#list-of-tasks ul").listview("refresh");
+        }
     });
 });
 $(document).on('pagebeforeshow', '.task-info', function(e){
     var currentHash = location.hash;
+    currentHash = currentHash.substring(1);
     var numberTask = currentHash[currentHash.length - 1];
     console.log(numberTask);
     var currentDataObject;
@@ -199,7 +208,11 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         }
         i++;
     });
-    console.log(currentDataObject);
+    if (currentDataObject.complete)
+    {
+        $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
+        $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor)
+    }
 });
 
 function addTask(num) {
@@ -253,3 +266,40 @@ function scan() {
     );
 }
 
+$(document).on('pagebeforeshow', '#current-floor-plan', function(e) {
+    var currentFloorNumber = window.localStorage.getItem("curentSelectedFloorPlanPage");
+    var finalSvgObjectElement = "<img id='current-floor-svg' src='img/" + currentFloorNumber + ".svg'></img>";
+    $("#current-floor-number").text(currentFloorNumber + "-этаж:");
+    $("#panzoom").empty().append(finalSvgObjectElement);
+});
+
+$(document).ready(function (){
+    $('#panzoom').panzoom({
+        $zoomIn: $(".zoom-in"),
+        $zoomOut: $(".zoom-out"),
+        $reset: $(".reset")
+    });
+    var areas = $("#navigation-map").children();
+    for (var i = 0; i < areas.length; i++) {
+        var currentArea = areas[i];
+        $(currentArea).bind("click", function () {
+            window.localStorage.setItem("curentSelectedFloorPlanPage", $(this).attr('page-number'));
+            var nextPage = "#current-floor-plan";
+            $.mobile.changePage(nextPage, {
+                transition: 'slide'
+            });
+        });
+    }
+    $('.map').maphilight({
+        fillColor: '09FF11',
+        fillOpacity: 0.4
+    });
+});
+$(document).ready(function() {
+    $("#task-info-2 .task-info__answer-button button").click(function(){
+        if ($(this).parent().parent().find(".task-info__input input").val() == "Программист" ||
+            $(this).parent().parent().find(".task-info__input input").val() == "программист") {
+            $(this).parent().parent().find(".task-info__description").text("Найдите ваш QR - код на 2м этаже рядом с железным человеком.");
+        }
+    });
+});

@@ -9,6 +9,8 @@
     <script src="js/script.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.panzoom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
 </head>
 
 <body>
@@ -80,7 +82,7 @@
     </div>
 
     <div data-role="footer" data-position="fixed">
-        <a href="#"
+        <a href="#floor-plans"
            style="background-color: cadetblue"
            class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
         <a href="#list-of-tasks"
@@ -507,20 +509,83 @@
            class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
     </div>
 </div>
+
+<div data-role="page" id="floor-plans">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <img src="img/section_trans-cutted.jpg"  width="618" height="1100"  class="map" usemap="#Navigation">
+        <map id="navigation-map" name="Navigation">
+            <area shape="poly" coords="308,211,493,232,490,296,308,278" page-number="6" />
+            <area shape="poly" coords="308,289,493,305,490,367,309,356" page-number="5"/>
+            <area shape="poly" coords="308,365,487,377,489,515,308,515" page-number="4"/>
+            <area shape="poly" coords="309,527,493,527,489,631,305,636" page-number="3"/>
+            <area shape="poly" coords="308,648,491,641,490,742,309,755" page-number="2"/>
+            <area shape="poly" coords="309,766,492,750,488,834,307,851" page-number="1"/>
+        </map>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+
+<div data-role="page" id="current-floor-plan">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content" id="current-floor-plan-content">
+        <div id="current-floor-number" style="text-align: center; font-size: 20px; font-weight: 800; margin: 0 0 5px 0;">
+
+        </div>
+        <div id="pan-parent"  style="border: solid black 1px;">
+            <div id="panzoom">
+
+            </div>
+        </div>
+        <div class="visuallyhidden">
+            <svg id="panzoom-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="300">
+                <rect x="400" y="400" width="100" height="100" rx="20" ry="20"></rect>
+            </svg>
+        </div>
+        <div class="buttons">
+            <button class="zoom-in">Zoom In</button>
+            <button class="zoom-out">Zoom Out</button>
+            <button class="reset">Reset</button>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           href="#list-of-tasks"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           href="#current-task"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+
 <div data-role="page" class="task-info" id="task-info-1">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Начать игру</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Здравствуйте, для того, что бы начать игру вам нужно найти первый QR - код.
         </div>
         <div class="task-info__prop">
             <div class="prop prop__time">
@@ -555,14 +620,18 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Шарады</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Вам нужно разгадать шарад
+        </div>
+        <div class="task-info__photo">
+
+        </div>
+        <div class="task-info__input">
+            <input type="text">
+        </div>
+        <div class="task-info__answer-button">
+            <button>Ответить</button>
         </div>
         <div class="task-info__prop">
             <div class="prop prop__time">
@@ -597,15 +666,13 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Найти место по звуку</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Прослушайте звук и попытайтесь найти место.
         </div>
+        <audio controls class="task-info__audio">
+            <source src="sound/table%20tennis.mp3" type="audio/ogg; codecs=vorbis">
+        </audio>
         <div class="task-info__prop">
             <div class="prop prop__time">
                 Время: <span></span>
@@ -639,15 +706,12 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Посмотрите видео</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Вы увидите маршрут, проследовав по которому вы найдете следующи QR - код
         </div>
+        <video controls class="task-info__video" src="video/video1.webm" type='video/webm; codecs="vp8, vorbis"'>
+        </video>
         <div class="task-info__prop">
             <div class="prop prop__time">
                 Время: <span></span>
@@ -681,14 +745,26 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Код в шахматах</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            <span class="bold">
+                Путь для 5-го уровня:
+            </span>
+            <ul class="task-info__num-list">
+                <li>Встаньте на белую плитку рядом перед кофейным автоматом и повернитесь спиной к бильярдным столам.</li>
+                <li>Пройдите вперед и встаньте на первую белую плитку.</li>
+                <li>Повернитесь налево и пройдите 12 плиток вперед.</li>
+                <li>Повернитесь направо и пройдите 15 плиток вперед.</li>
+                <li>Теперь 25 плиток налево.</li>
+                <li>Далее 6 плиток направо.</li>
+                <li>И еще 6 плиток налево.</li>
+                <li>Спуститесь на один этаж и остановитесь на последней ступеньке.</li>
+                <li>Пройдите вперед 6 плиток, вы окажетесь на плитке белого цвета.</li>
+                <li>Пройдите вперед 6 плиток, вы окажетесь на плитке белого цвета.</li>
+                <li>А теперь пройдите 26 плиток налево.</li>
+                <li>Повернитесь направо, недалеко впереди будет игровая комната.</li>
+                <li>Ищите код рядом с королём:)</li>
+            </ul>
         </div>
         <div class="task-info__prop">
             <div class="prop prop__time">
@@ -723,14 +799,12 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Комната с летающими людьми</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Код нужно найти найти под столом рядом с телевизором
+        </div>
+        <div class="task-info__photo-img">
+            <img src="img/cafe.jpg" alt="">
         </div>
         <div class="task-info__prop">
             <div class="prop prop__time">
@@ -765,14 +839,12 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">Найти печку</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Попробуй отыскать веселую печку из русской народной сказки.
+        </div>
+        <div class="task-info__photo-img">
+            <img src="img/owen.jpeg" alt="">
         </div>
         <div class="task-info__prop">
             <div class="prop prop__time">
@@ -807,15 +879,11 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
+        <h1 class="task-info__head">И снова прослушайте</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Прослушайте аудиозапись и попробуйте отыскать
         </div>
+        <audio src="sound/yellow_submarine.mp3" controls></audio>
         <div class="task-info__prop">
             <div class="prop prop__time">
                 Время: <span></span>
@@ -851,12 +919,10 @@
     <div data-role="content">
         <h1 class="task-info__head">Найти обезьянку</h1>
         <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
+            Смотри внимательно и тебе улыбнется удача.
+        </div>
+        <div class="task-info__photo-img">
+            <img src="img/monkey.jpg" alt="">
         </div>
         <div class="task-info__prop">
             <div class="prop prop__time">
@@ -891,15 +957,7 @@
     </div>
 
     <div data-role="content">
-        <h1 class="task-info__head">Найти обезьянку</h1>
-        <div class="task-info__description">
-            бла бла бла бла бла бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-            бла бла бла бла бла
-        </div>
+        <h1 class="task-info__head">Финал</h1>
         <div class="task-info__prop">
             <div class="prop prop__time">
                 Время: <span></span>
@@ -909,22 +967,13 @@
             </div>
             <div style="clear: both;"></div>
         </div>
+
     </div>
 
     <div data-role="footer" data-position="fixed">
-        <a href="#"
-           style="background-color: cadetblue"
-           class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
-        <a href="#list-of-tasks"
-           style="background-color: saddlebrown"
-           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
-        <a href="#"
-           style="background-color: forestgreen"
-           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-comment"></a>
-        <a style="background-color: lightblue"
+        <a href="#info"
            data-transition="slide"
-           data-rel="back"
-           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-info hint-button"></a>
     </div>
 </div>
 <script src="js/index.js"></script>
