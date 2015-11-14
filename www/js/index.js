@@ -154,6 +154,7 @@ window.addEventListener("load", function() {
 
 $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
     $("#list-of-tasks ul").html("");
+    var data = JSON.parse(localStorage.getItem("data"));
     Object.keys(data).forEach(function(index){
         $("#list-of-tasks ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "forbidden") +'>' +
             '<a href='+"#task-info-"+ data[index].order +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
@@ -167,6 +168,7 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
     console.log(numberTask);
     var currentDataObject;
     var i = 1; //first index
+    var data = JSON.parse(localStorage.getItem("data"));
     Object.keys(data).forEach(function(index){
         if (i == numberTask)
         {
@@ -194,7 +196,7 @@ function scan() {
                 if(result.format == "QR_CODE")
                 {
 
-                    data = JSON.parse(localStorage.getItem("data"));
+                    var data = JSON.parse(localStorage.getItem("data"));
                     var numberTask = data[localStorage.getItem("currentTask")].order+1;
 
                     if (localStorage.getItem("currentTask") === result.text) {
