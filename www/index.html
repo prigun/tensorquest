@@ -9,6 +9,8 @@
     <script src="js/script.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery.panzoom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
 </head>
 
 <body>
@@ -80,7 +82,7 @@
     </div>
 
     <div data-role="footer" data-position="fixed">
-        <a href="#"
+        <a href="#floor-plans"
            style="background-color: cadetblue"
            class="map-button ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-location"></a>
         <a href="#list-of-tasks"
@@ -147,6 +149,75 @@
            class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
     </div>
 </div>
+
+<div data-role="page" id="floor-plans">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content">
+        <img src="img/section_trans-cutted.jpg"  width="618" height="1100"  class="map" usemap="#Navigation">
+        <map id="navigation-map" name="Navigation">
+            <area shape="poly" coords="308,211,493,232,490,296,308,278" page-number="7" />
+            <area shape="poly" coords="308,289,493,305,490,367,309,356" page-number="6"/>
+            <area shape="poly" coords="308,363,492,373,492,441,310,431" page-number="5"/>
+            <area shape="poly" coords="308,441,493,448,494,518,305,515" page-number="4"/>
+            <area shape="poly" coords="309,527,493,527,489,631,305,636" page-number="3"/>
+            <area shape="poly" coords="308,648,491,641,490,742,309,755" page-number="2"/>
+            <area shape="poly" coords="309,766,492,750,488,834,307,851" page-number="1"/>
+        </map>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+
+<div data-role="page" id="current-floor-plan">
+    <div data-role="header">
+        <img src="img/tensor_logo2.png" width="30%">
+    </div>
+
+    <div data-role="content" id="current-floor-plan-content">
+        <div id="current-floor-number" style="text-align: center; font-size: 20px; font-weight: 800; margin: 0 0 5px 0;">
+
+        </div>
+        <div id="pan-parent"  style="border: solid black 1px;">
+            <div id="panzoom">
+
+            </div>
+        </div>
+        <div class="visuallyhidden">
+            <svg id="panzoom-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="300">
+                <rect x="400" y="400" width="100" height="100" rx="20" ry="20"></rect>
+            </svg>
+        </div>
+        <div class="buttons">
+            <button class="zoom-in">Zoom In</button>
+            <button class="zoom-out">Zoom Out</button>
+            <button class="reset">Reset</button>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           href="#list-of-tasks"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           href="#current-task"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-bullets"></a>
+        <a style="background-color: lightblue"
+           data-transition="slide"
+           data-rel="back"
+           class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-back"></a>
+    </div>
+</div>
+
 <div data-role="page" class="task-info" id="task-info-1">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">

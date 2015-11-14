@@ -234,3 +234,32 @@ function scan() {
     );
 }
 
+$(document).on('pagebeforeshow', '#current-floor-plan', function(e) {
+    var currentFloorNumber = window.localStorage.getItem("curentSelectedFloorPlanPage");
+    var finalSvgObjectElement = "<img id='current-floor-svg' src='img/" + currentFloorNumber + ".svg'></img>";
+    $("#current-floor-number").text(currentFloorNumber + "-этаж:");
+    $("#panzoom").empty().append(finalSvgObjectElement);
+});
+
+$(document).ready(function (){
+    $('#panzoom').panzoom({
+        $zoomIn: $(".zoom-in"),
+        $zoomOut: $(".zoom-out"),
+        $reset: $(".reset")
+    });
+    var areas = $("#navigation-map").children();
+    for (var i = 0; i < areas.length; i++) {
+        var currentArea = areas[i];
+        $(currentArea).bind("click", function () {
+            window.localStorage.setItem("curentSelectedFloorPlanPage", $(this).attr('page-number'));
+            var nextPage = "#current-floor-plan";
+            $.mobile.changePage(nextPage, {
+                transition: 'slide'
+            });
+        });
+    }
+    $('.map').maphilight({
+        fillColor: '09FF11',
+        fillOpacity: 0.4
+    });
+});
