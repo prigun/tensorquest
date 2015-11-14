@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task">
+<div data-role="page"  class="main-task" id="task">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -70,6 +70,15 @@
     <div data-role="content">
         <h1>Пожалуй начнём</h1>
         <p>Переверни свой пропуск и сосканируй QR-код</p>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint" data-role="popup">
@@ -106,7 +115,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task2">
+<div data-role="page" class="main-task" id="task2">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -114,7 +123,25 @@
     <div data-role="content">
         <h1>Шарады</h1>
         <p>Пройди в детальное описание задачи и реши шараду</p>
-        <a href="javascript:scan();"
+        <div class="task-info__photo">
+
+        </div>
+        <div class="task-info__input">
+            <input type="text">
+        </div>
+        <div class="task-info__answer-button">
+            <button>Ответить</button>
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+            <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint2" data-role="popup">
             <h1>Подсказка</h1>
@@ -147,7 +174,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task3">
+<div data-role="page" class="main-task" id="task3">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -155,7 +182,21 @@
     <div data-role="content">
         <h1>Найти место по звуку</h1>
         <p>Перейди в детальное описание задания, прослушай аудиозапись и разгадай место</p>
-        <a href="javascript:scan();"
+        <audio controls class="task-info__audio">
+            <source src="sound/table%20tennis.mp3" type="audio/ogg; codecs=vorbis">
+        </audio>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint3" data-role="popup">
             <h1>Подсказка</h1>
@@ -164,7 +205,7 @@
                     data-rel="back"
                     class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-check ui-btn-right"></a>
         </div>
-    </div>
+
 
     <div data-role="footer" data-position="fixed">
         <a href="#"
@@ -188,7 +229,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task4">
+<div data-role="page" class="main-task" id="task4">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -196,6 +237,17 @@
     <div data-role="content">
         <h1>Посмотрите видео</h1>
         <p>Перейди в детальное описание задачи и посмотри видео.</p>
+        <video controls class="task-info__video" src="video/video1.webm" type='video/webm; codecs="vp8, vorbis"'>
+        </video>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint4" data-role="popup">
@@ -229,7 +281,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task5">
+<div data-role="page" class="main-task" id="task5">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -237,6 +289,35 @@
     <div data-role="content">
         <h1>Код в шахматах</h1>
         <p>Проследуйте инструкции</p>
+        <div class="task-info__description">
+            <span class="bold">
+                Путь для 5-го уровня:
+            </span>
+            <ul class="task-info__num-list">
+                <li>Встаньте на белую плитку рядом перед кофейным автоматом и повернитесь спиной к бильярдным столам.</li>
+                <li>Пройдите вперед и встаньте на первую белую плитку.</li>
+                <li>Повернитесь налево и пройдите 12 плиток вперед.</li>
+                <li>Повернитесь направо и пройдите 15 плиток вперед.</li>
+                <li>Теперь 25 плиток налево.</li>
+                <li>Далее 6 плиток направо.</li>
+                <li>И еще 6 плиток налево.</li>
+                <li>Спуститесь на один этаж и остановитесь на последней ступеньке.</li>
+                <li>Пройдите вперед 6 плиток, вы окажетесь на плитке белого цвета.</li>
+                <li>Пройдите вперед 6 плиток, вы окажетесь на плитке белого цвета.</li>
+                <li>А теперь пройдите 26 плиток налево.</li>
+                <li>Повернитесь направо, недалеко впереди будет игровая комната.</li>
+                <li>Ищите код рядом с королём:)</li>
+            </ul>
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint5" data-role="popup">
@@ -270,7 +351,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task6">
+<div data-role="page" class="main-task" id="task6">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -278,6 +359,18 @@
     <div data-role="content">
         <h1>Комната с летающими людьми</h1>
         <p>Найди комнату с летающими людьми и посмотри под столом около телевизора</p>
+        <div class="task-info__photo-img">
+            <img src="img/cafe.jpg" alt="">
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint6" data-role="popup">
@@ -312,7 +405,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task7">
+<div data-role="page" class="main-task" id="task7">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -320,6 +413,18 @@
     <div data-role="content">
         <h1>Найти печку</h1>
         <p>Попробуй найти печку из русских старинных сказок</p>
+        <div class="task-info__photo-img">
+            <img src="img/owen.jpeg" alt="">
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint7" data-role="popup">
@@ -354,7 +459,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task8">
+<div data-role="page" class="main-task" id="task8">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -362,6 +467,16 @@
     <div data-role="content">
         <h1>И снова прослушайте</h1>
         <p>Послушай аудиозапись и угадай место</p>
+        <audio src="sound/yellow_submarine.mp3" controls></audio>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint8" data-role="popup">
@@ -395,7 +510,7 @@
     </div>
 </div>
 
-<div data-role="page" id="task9">
+<div data-role="page" class="main-task" id="task9">
     <div data-role="header">
         <img src="img/tensor_logo2.png" width="30%">
     </div>
@@ -403,6 +518,18 @@
     <div data-role="content">
         <h1>Найти обезьянку</h1>
         <p>Найди в нашем офисе обезьянку</p>
+        <div class="task-info__photo-img">
+            <img src="img/monkey.jpg" alt="">
+        </div>
+        <div class="task-info__prop">
+            <div class="prop prop__time">
+                Время: <span></span>
+            </div>
+            <div class="prop prop__floor">
+                Этаж: <span></span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
         <a href="javascript:scan();"
            class="task__enter-button ui-btn ui-shadow ui-corner-all">Ввести код</a>
         <div id="hint9" data-role="popup">
