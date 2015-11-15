@@ -242,16 +242,9 @@ $(document).on('pagebeforeshow', '.task-info', function(e){
         }
         i++;
     });
-    if (currentDataObject.complete)
-    {
-        $("#" + currentHash + " .prop__time span").text(currentDataObject.time);
-        $("#" + currentHash + " .prop__floor span").text(currentDataObject.floor);
-    }
-    else
-    {
-        $("#" + currentHash + " .prop__time").css("display", "none");
-        $("#" + currentHash + " .prop__floor").css("display", "none");
-    }
+    $("#" + currentHash + " .prop__time").css("display", "none");
+    $("#" + currentHash + " .prop__floor").css("display", "none");
+
 });
 
 function addTask(num) {
