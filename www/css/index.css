@@ -42,6 +42,7 @@ body {
     margin:0px;
     padding:0px;
     text-transform:uppercase;
+    text-transform: none;
     width:100%;
     text-transform: none;
 }
@@ -201,6 +202,12 @@ div[data-role="header"] .small-logo {
 .task-info__audio {
     margin-bottom: 10px;
 }
+#list-of-tasks li[data-icon=""] a:after {
+    display: none;
+}
+#list-of-tasks li[data-icon="check"] a:after {
+    background-color: green;
+}
 .task-info__video {
     width: 100%;
 }
@@ -218,6 +225,13 @@ div[data-role="header"] .small-logo {
 }
 .prop__time {
     float: left;
+}
+#task2 .task-info__answer-button button{
+    background-color: lightblue;
+
+}
+.ui-content .task__enter-button, .ui-page .task__enter-button{
+    background-color: lightblue;
 }
 .prop__floor {
     float: right;
