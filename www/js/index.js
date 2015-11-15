@@ -312,7 +312,7 @@ function scan() {
 
 $(document).on('pagebeforeshow', '#current-floor-plan', function(e) {
     var currentFloorNumber = window.localStorage.getItem("curentSelectedFloorPlanPage");
-    var finalSvgObjectElement = "<img id='current-floor-svg' src='img/" + currentFloorNumber + ".svg'></img>";
+    var finalSvgObjectElement = "<img id='current-floor-svg' style='height: 700px;' src='img/" + currentFloorNumber + ".svg'></img>";
     $("#current-floor-number").text(currentFloorNumber + "-этаж:");
     $("#panzoom").empty().append(finalSvgObjectElement);
 });
