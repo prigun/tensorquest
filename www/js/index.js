@@ -126,7 +126,7 @@ var data = {
     },
     "d129c998-7dcd-4a8b-ad22-95d9f274e2a9": {
         order: 10,
-        name: "Пропуск",
+        name: "Финал",
         hint: "Подсказка для 10й задачи",
         complete: false,
         floor: 2,
@@ -283,14 +283,13 @@ function scan() {
                             if (data[key].order == numberTask)
                             {
                                 localStorage.setItem("currentTask", key);
-
                             }
                         }
-                        alert('Поздравляем! Можно переходить к следующему заданию');
+                        $( "#success_popup" ).popup("open");
                     }
                     else
                     {
-                        alert('Неподходящий QR-код, попробуйте найти другой');
+                        $( "#fail_popup" ).popup("open");
                     }
                     localStorage.setItem("data", JSON.stringify(data));
                 }
@@ -349,3 +348,8 @@ function currentTask() {
     }
     $.mobile.changePage("#task"+currentTask_num);
 }
+
+$( function() {
+    $( "#success_popup" ).enhanceWithin().popup();
+    $( "#fail_popup" ).enhanceWithin().popup();
+});
