@@ -134,6 +134,12 @@ h1 {
     background: #FFA500;
     text-shadow: none;
 }
+#task10 h1 {
+    font-size: 90px;
+}
+#task10 p {
+    font-size: 24px;
+}
 div[data-role='footer'] .power-button {
     background: #ff0000;
 }

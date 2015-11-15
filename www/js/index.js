@@ -123,14 +123,6 @@ var data = {
         complete: false,
         floor: 2,
         time: "0,53"
-    },
-    "d129c998-7dcd-4a8b-ad22-95d9f274e2a9": {
-        order: 10,
-        name: "Финал",
-        hint: "Подсказка для 10й задачи",
-        complete: false,
-        floor: 2,
-        time: "0,53"
     }
 };
 
@@ -332,6 +324,7 @@ $(document).ready(function (){
     });
 });
 $(document).ready(function() {
+    $(".task-info__input input").val("");
     $("#task2 .task-info__answer-button button").click(function(){
         var val = $(this).parent().parent().find(".task-info__input input").val();
         if (/программист/i.test(val)) {
