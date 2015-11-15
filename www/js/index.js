@@ -290,14 +290,14 @@ function scan() {
                             if (data[key].order == numberTask)
                             {
                                 localStorage.setItem("currentTask", key);
-
                             }
                         }
-                        alert('Поздравляем! Можно переходить к следующему заданию');
+                        $( "#success_popup" ).popup("open");
                     }
                     else
                     {
                         alert('Неподходящий QR-код, попробуйте найти другой');
+                        $( "#fail_popup" ).popup("open");
                     }
                     localStorage.setItem("data", JSON.stringify(data));
                 }
@@ -355,3 +355,8 @@ function currentTask() {
     }
     $.mobile.changePage("#task"+currentTask_num);
 }
+
+$( function() {
+    $( "#success_popup" ).enhanceWithin().popup();
+    $( "#fail_popup" ).enhanceWithin().popup();
+});
