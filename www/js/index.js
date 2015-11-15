@@ -340,10 +340,11 @@ $(document).ready(function (){
     });
 });
 $(document).ready(function() {
-    $("#task-info-2 .task-info__answer-button button").click(function(){
-        if ($(this).parent().parent().find(".task-info__input input").val() == "Программист" ||
-            $(this).parent().parent().find(".task-info__input input").val() == "программист") {
-            $(this).parent().parent().find(".task-info__description").text("Найдите ваш QR - код на 2м этаже рядом с железным человеком.");
+    $("#task2 .task-info__answer-button button").click(function(){
+        var val = $(this).parent().parent().find(".task-info__input input").val();
+        if (/программист/i.test(val)) {
+            $(this).parent().parent().find("p").text("Найдите ваш QR - код на 2м этаже рядом с железным человеком.");
+            $(this).parent().parent().find(".task-info__photo").css("display", "none");
         }
     });
 });
