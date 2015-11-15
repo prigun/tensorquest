@@ -236,3 +236,7 @@ div[data-role="header"] .small-logo {
 .prop__floor {
     float: right;
 }
+
+.map {
+    margin: 0 auto;
+}
