@@ -296,7 +296,6 @@ function scan() {
                     }
                     else
                     {
-                        alert('Неподходящий QR-код, попробуйте найти другой');
                         $( "#fail_popup" ).popup("open");
                     }
                     localStorage.setItem("data", JSON.stringify(data));
