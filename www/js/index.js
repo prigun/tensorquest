@@ -191,9 +191,9 @@ $(document).on('pagebeforeshow', '#list-of-tasks', function(e){
             $("#list-of-tasks-ul").html($("#list-of-tasks ul").html() + '<li data-icon='+ (data[index].complete ? "check" : "") +'>' +
                 '<a href='+"#task"+ (data[index].complete ? (data[index].order - 1 == 0 ? "" : data[index].order) : "32") +'>'+data[index].order+ '. ' + data[index].name +'</a>' +
                 '</li>');
-            $("#list-of-tasks-ul").listview("refresh");
         }
     });
+    $("#list-of-tasks-ul").listview("refresh");
 });
 $(document).on('pagebeforeshow', '.main-task', function(e){
     var currentHash = location.hash;
