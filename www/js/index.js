@@ -126,7 +126,7 @@ var data = {
     },
     "d129c998-7dcd-4a8b-ad22-95d9f274e2a9": {
         order: 10,
-        name: "Пропуск",
+        name: "Финал",
         hint: "Подсказка для 10й задачи",
         complete: false,
         floor: 2,
